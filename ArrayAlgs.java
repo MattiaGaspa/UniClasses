@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Classe contenente metodi utili per la gestione degli array
  */
 public class ArrayAlgs {

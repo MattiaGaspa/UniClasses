@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Classe contenente  metodi utili per gestire numeri
  */
 public class Numeric {
