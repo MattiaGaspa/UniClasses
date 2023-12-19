@@ -1,5 +1,3 @@
-package UniClasses;
-
 /** Classe contenente metodi utili per la gestione degli array
  */
 public class ArrayAlgs {
@@ -8,9 +6,9 @@ public class ArrayAlgs {
      * @param size La nuova dimensione dell'array
      * @return L'array ridimensionato
      */
-    public static Object[] resize(Object[] array, int size) {
+    public static <T> T[] resize(T[] array, int size) {
         if (size < 0) throw new IllegalArgumentException();
-        Object[] newArray = new Object[size];
+        T[] newArray = (T[]) new Object[size];
         if (size < array.length) size = array.length;
         System.arraycopy(array, 0, newArray, 0, size);
         return newArray;
@@ -33,7 +31,7 @@ public class ArrayAlgs {
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @return La stringa in uscita
      */
-    public static String toString(Object[] array, int vSize) {
+    public static <T> String toString(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
         String stringa = "[";
         for (int i = 0; i < vSize; i++)
@@ -48,8 +46,8 @@ public class ArrayAlgs {
      * @param index L'indice dove si vuole inserire il valore
      * @param value Il valore da inserire
      */
-    public static void insert(Object[] array, int vSize, int index, Object value) {
-        if ((index < 0) || (index > vSize) || (vSize < 0) || (vSize > array.length) || (value.getClass() != array[0].getClass())) throw new IllegalArgumentException();
+    public static <T> void insert(T[] array, int vSize, int index, T value) {
+        if ((index < 0) || (index > vSize) || (vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
         if (vSize == array.length) throw new ArrayFullException();
         for (int i = vSize; i > index; i--)
             array[i] = array[i - 1];
@@ -61,7 +59,7 @@ public class ArrayAlgs {
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @param index L'indice dell'elemento da eliminare
      */
-    public static void removeUnsorted(Object[] array, int vSize, int index) {
+    public static <T> void removeUnsorted(T[] array, int vSize, int index) {
         if ((index < 0) || (vSize < 0) || (vSize > array.length) || (index > vSize)) throw new IllegalArgumentException();
         array[index] = array[vSize - 1];
         array[vSize - 1] = null;
@@ -71,7 +69,7 @@ public class ArrayAlgs {
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @param index L'indice dell'elemento da eliminare
      */
-    public static void remove(Object[] array, int vSize, int index) {
+    public static <T> void remove(T[] array, int vSize, int index) {
         if ((index < 0) || (vSize < 0) || (vSize > array.length) || (index > vSize)) throw new IllegalArgumentException();
         for (int i = index + 1; i < vSize; i++)
             array[i-1] = array[i];
@@ -84,9 +82,9 @@ public class ArrayAlgs {
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @return Il valore minimo
      */
-    public static Comparable findMin(Comparable array[], int vSize) {
+    public static <T extends Comparable<T>> T findMin(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
-        Comparable min = array[0];
+        T min = array[0];
         for (int i = 1; i < vSize; i++) 
             if (array[i].compareTo(min) < 0)
                 min = array[i];
@@ -97,9 +95,9 @@ public class ArrayAlgs {
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @return Il valore massimo
      */
-    public static Comparable findMax(Comparable array[], int vSize) {
+    public static <T extends Comparable<T>> T findMax(T array[], int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
-        Comparable max = array[0];
+        T max = array[0];
         for (int i = 1; i < vSize; i++) 
             if (array[i].compareTo(max) > 0)
                 max = array[i];
@@ -112,7 +110,7 @@ public class ArrayAlgs {
      * @param value Il valore da trovare
      * @return L'inidce del primo elemento che coincide con il valore dato (-1 se non presente)
      */
-    public static int linearSearch(Object[] array, int vSize, Object value) {
+    public static <T> int linearSearch(T[] array, int vSize, Object value) {
         if ((vSize < 0) || (vSize > array.length) || (value.getClass() != array[0].getClass())) throw new IllegalArgumentException();
         for (int i = 0; i < vSize; i++) {
             if (array[i].equals(value)) return i;
@@ -125,17 +123,24 @@ public class ArrayAlgs {
      * @param value Il valore da trovare
      * @return L'inidce del primo elemento che coincide con il valore dato (-1 se non presente)
      */
-    public static int binarySearch(Object[] array, int vSize, Object value) {
+    public static <T extends Comparable<T>> int binarySearch(T[] array, int vSize, T value) {
         if ((vSize < 0) || (vSize > array.length) || (value.getClass() != array[0].getClass())) throw new IllegalArgumentException();
-        // Complete
-        return -1;
+        return binSearch(array, 0, vSize-1, value);
+    }
+    private static <T extends Comparable<T>> int binSearch(T[] v, int from, int to, T value) {
+        if (from > to) return -1;
+        int m = (to - from) / 2;
+        T middle = v[m];
+        if (middle.compareTo(value) == 0) return m;
+        else if (middle.compareTo(value) < 0) return binSearch(v, m+1, to, value);
+        else return binSearch(v, from, m-1, value);
     }
 
     /** Effettua l'ordinamento dell'array con algoritmo Selection sort
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
      */
-    public static void SelectionSort(Comparable[] array, int vSize) {
+    public static <T extends Comparable<T>> void SelectionSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
         // TODO
     }
@@ -143,18 +148,18 @@ public class ArrayAlgs {
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
      */
-    public static void MergeSort(Comparable[] array, int vSize) {
+    public static <T extends Comparable<T>> void MergeSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
         // TODO
     }
-    private static void Merge(Comparable[] array, Comparable[] left, Comparable[] right) {
+    private static <T extends Comparable<T>> void Merge(T[] array, Comparable[] left, Comparable[] right) {
         // TODO
     }
     /** Effettua l'ordinamento dell'array con algoritmo Insertion sort
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
      */
-    public static void InsertionSort(Comparable[] array, int vSize) {
+    public static <T extends Comparable<T>> void InsertionSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
         // TODO
     }
