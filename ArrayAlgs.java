@@ -129,7 +129,7 @@ public class ArrayAlgs {
     }
     private static <T extends Comparable<T>> int binSearch(T[] v, int from, int to, T value) {
         if (from > to) return -1;
-        int m = (to - from) / 2;
+        int m = (to + from) / 2;
         T middle = v[m];
         if (middle.compareTo(value) == 0) return m;
         else if (middle.compareTo(value) < 0) return binSearch(v, m+1, to, value);
@@ -140,28 +140,66 @@ public class ArrayAlgs {
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
      */
-    public static <T extends Comparable<T>> void SelectionSort(T[] array, int vSize) {
+    public static <T extends Comparable<T>> void selectionSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
-        // TODO
+        for (int i = 0; i < vSize-1; i++) {
+            int min = i;
+            for (int j = i+1; j < vSize; j++)
+                if (array[min].compareTo(array[j]) > 0) min = j;
+            if (min != i) {
+                T t = array[min];
+                array[min] = array[i];
+                array[i] = t;
+            }
+        }
     }
     /** Effettua l'ordinamento dell'array con algoritmo Merge sort
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
      */
-    public static <T extends Comparable<T>> void MergeSort(T[] array, int vSize) {
+    public static <T extends Comparable<T>> void mergeSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
-        // TODO
+        if (array.length < 2) return;
+        int middle = vSize/2;
+        T[] left = (T[]) new Comparable[middle];
+        T[] right = (T[]) new Comparable[vSize - middle];
+        System.arraycopy(array, 0, left, 0, middle);
+        System.arraycopy(array, middle, right, 0, vSize-middle);
+        mergeSort(left, middle);
+        mergeSort(right, vSize-middle);
+        merge(array, left, right);
     }
-    private static <T extends Comparable<T>> void Merge(T[] array, Comparable[] left, Comparable[] right) {
-        // TODO
+    private static <T extends Comparable<T>> void merge(T[] array, T[] left, T[] right) {
+        int i = 0;
+        int il = 0;
+        int ir = 0;
+        while ((il < left.length) && (ir < right.length)) {
+            if (left[il].compareTo(right[ir]) < 0)
+                array[i++] = left[il++];
+            else
+                array[i++] = right[ir++];
+        }
+        while (il < left.length) {
+            array[i++] = left[il++];
+        }
+        while (ir < right.length) {
+            array[i++] = right[ir++];
+        }
     }
     /** Effettua l'ordinamento dell'array con algoritmo Insertion sort
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
      */
-    public static <T extends Comparable<T>> void InsertionSort(T[] array, int vSize) {
+    public static <T extends Comparable<T>> void insertionSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
-        // TODO
+        for (int i = 1; i < vSize; i++) {
+            T temp = array[i];
+            int j;
+            for (j = i; j>0 && temp.compareTo(array[j-1]) < 0; j--) {
+                array[j] = array[j-1];
+            }
+            array[j] = temp;
+        }
     }
 }
 
