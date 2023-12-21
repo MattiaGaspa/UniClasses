@@ -1,4 +1,6 @@
-/** Interfaccia pe rimplementare una coda (Queue) */
+/** Interfaccia per implementare una coda (Queue)
+ * @param <T> Tipo generico dei dati inseriti all'interno della coda
+*/
 public interface Queue<T> extends Container {
     /** Aggiunge un elemento alla coda
      * @param obj Elemento da aggiungere

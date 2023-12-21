@@ -1,4 +1,5 @@
 /** Classe che implementa l'interfaccia Stack. Ridimensionabile
+ * @param <T> Tipo generico dei dati inseriti all'interno dello stack
  */
 public class ArrayStack<T> extends FixedArrayStack<T> {
     /** Inserisce un elemento nello stack, se questo è pieno ne raddoppia la dimensione */

@@ -1,6 +1,7 @@
 /** Classe che implementa l'interfaccia Queue. Ridimensionabile
+ * @param <T> Tipo generico dei dati inseriti all'interno della coda
 */
-public class GrowingQueue<T> extends FixedQueue<T> {
+public class ArrayQueue<T> extends FixedArrayQueue<T> {
     /** Aggiunge un elemento alla coda
      * @param obj Elemento da aggiungere
      */

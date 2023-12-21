@@ -1,25 +1,26 @@
 /** Classe che implementa l'interfaccia Queue. Non ridimensionabile
+ * @param <T> Tipo generico dei dati inseriti all'interno della coda
 */
-public class FixedQueue<T> implements Queue<T> {
+public class FixedArrayQueue<T> implements Queue<T> {
     /** Viene costruito una coda di una dimensione fissata e la si inizializza a zero
      */
-    public FixedQueue() {
+    public FixedArrayQueue() {
         array = (T[]) new Object[INITIALSIZE];
         makeEmpty();
     }
     /** Viene costruito una coda di una dimensione data e la si inizializza a zero
      * @param size La dimensione dell'array
      */
-    public FixedQueue(int size) {
-        array = (T[]) new Object[INITIALSIZE];
+    public FixedArrayQueue(int size) {
+        array = (T[]) new Object[size];
         makeEmpty();
     }
 
-    /** Controlla se la coda è vuoto
+    /** Controlla se la coda è vuota
     * @return Vero se la coda è vuoto altrimenti falso
     */
     public boolean isEmpty() { return front == back; }
-    /** Rende vuoto la coda
+    /** Rende vuota la coda
     */
     public void makeEmpty() { front = back = 0; }
 

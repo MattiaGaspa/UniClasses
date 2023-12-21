@@ -4,6 +4,7 @@ public class ArrayAlgs {
     /** Effettua il ridimensionamento dinamico dell'array
      * @param array L'array da ridimensionare
      * @param size La nuova dimensione dell'array
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      * @return L'array ridimensionato
      */
     public static <T> T[] resize(T[] array, int size) {
@@ -29,6 +30,7 @@ public class ArrayAlgs {
     /** Converte un array in formato stringa
      * @param array L'array da convertire
      * @param vSize La prima cella di memoria che non contiene un valore valido
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      * @return La stringa in uscita
      */
     public static <T> String toString(T[] array, int vSize) {
@@ -45,6 +47,7 @@ public class ArrayAlgs {
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @param index L'indice dove si vuole inserire il valore
      * @param value Il valore da inserire
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      */
     public static <T> void insert(T[] array, int vSize, int index, T value) {
         if ((index < 0) || (index > vSize) || (vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
@@ -58,6 +61,7 @@ public class ArrayAlgs {
      * @param array L'array da cui si deve eliminare l'elemento
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @param index L'indice dell'elemento da eliminare
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      */
     public static <T> void removeUnsorted(T[] array, int vSize, int index) {
         if ((index < 0) || (vSize < 0) || (vSize > array.length) || (index > vSize)) throw new IllegalArgumentException();
@@ -68,6 +72,7 @@ public class ArrayAlgs {
      * @param array L'array da cui si deve eliminare l'elemento
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @param index L'indice dell'elemento da eliminare
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      */
     public static <T> void remove(T[] array, int vSize, int index) {
         if ((index < 0) || (vSize < 0) || (vSize > array.length) || (index > vSize)) throw new IllegalArgumentException();
@@ -80,6 +85,7 @@ public class ArrayAlgs {
     /** Ritorna il valore minimo di un array di elementi confrontabili
      * @param array L'array dove si cerca il minimo
      * @param vSize La prima cella di memoria che non contiene un valore valido
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      * @return Il valore minimo
      */
     public static <T extends Comparable<T>> T findMin(T[] array, int vSize) {
@@ -93,6 +99,7 @@ public class ArrayAlgs {
     /** Ritorna il valore massimo di un array di elementi confrontabili
      * @param array L'array dove si cerca il massimo
      * @param vSize La prima cella di memoria che non contiene un valore valido
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      * @return Il valore massimo
      */
     public static <T extends Comparable<T>> T findMax(T array[], int vSize) {
@@ -108,6 +115,7 @@ public class ArrayAlgs {
      * @param array L'array nel quale si cerca l'elemento
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @param value Il valore da trovare
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      * @return L'inidce del primo elemento che coincide con il valore dato (-1 se non presente)
      */
     public static <T> int linearSearch(T[] array, int vSize, Object value) {
@@ -121,6 +129,7 @@ public class ArrayAlgs {
      * @param array L'array nel quale si cerca l'elemento
      * @param vSize La prima cella di memoria che non contiene un valore valido
      * @param value Il valore da trovare
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      * @return L'inidce del primo elemento che coincide con il valore dato (-1 se non presente)
      */
     public static <T extends Comparable<T>> int binarySearch(T[] array, int vSize, T value) {
@@ -139,6 +148,7 @@ public class ArrayAlgs {
     /** Effettua l'ordinamento dell'array con algoritmo Selection sort
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      */
     public static <T extends Comparable<T>> void selectionSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
@@ -156,6 +166,7 @@ public class ArrayAlgs {
     /** Effettua l'ordinamento dell'array con algoritmo Merge sort
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      */
     public static <T extends Comparable<T>> void mergeSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();
@@ -189,6 +200,7 @@ public class ArrayAlgs {
     /** Effettua l'ordinamento dell'array con algoritmo Insertion sort
      * @param array L'array da ordinare
      * @param vSize La prima cella di memoria che non contiene un valore valido
+     * @param <T> Tipo generico dei dati inseriti all'interno dell'array
      */
     public static <T extends Comparable<T>> void insertionSort(T[] array, int vSize) {
         if ((vSize < 0) || (vSize > array.length)) throw new IllegalArgumentException();

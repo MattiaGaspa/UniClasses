@@ -1,4 +1,6 @@
-/** Interfaccia per implementare una pila (stack) */
+/** Interfaccia per implementare una pila (stack)
+ * @param <T> Tipo generico dei dati inseriti all'interno dello stack
+*/
 public interface Stack<T> extends Container {
     /** Inserisce un elemento sulla pila
      * @param obj L'elemento da inserire
