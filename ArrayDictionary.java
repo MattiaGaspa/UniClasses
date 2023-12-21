@@ -14,7 +14,8 @@ public class ArrayDictionary<T extends Comparable<T>, E> extends UnsortedArrayDi
         }
         catch (DictionaryItemNotFoundException e) {}
         if (vSize == array.length) array = resize(2 * vSize);
-        insertionSort(new Pair<T, E>(key, value));
+        array[vSize++] = new Pair<T, E>(key, value);
+        insertionSort();
     }
     /** Rimuove un elemento dal dizionario
      * @param key La chiave dell'elemento da rimuovere
@@ -45,11 +46,11 @@ public class ArrayDictionary<T extends Comparable<T>, E> extends UnsortedArrayDi
         else if (middle.compareTo(key) < 0) return binSearch(key, m+1, vSize-1);
         else return m;
     }
-    private void insertionSort(Pair<T, E> insertion) {
+    private void insertionSort() {
         for (int i = 1; i < vSize; i++) {
             Pair<T,E> temp = array[i];
             int j;
-            for (j = i; temp.getKey().compareTo(array[j-1].getKey()) > 0 && j > 0; j++)
+            for (j = i; temp.getKey().compareTo(array[j-1].getKey()) < 0 && j > 0; j--)
                 array[j] = array[j-1];
             array[j] = temp;
         }
