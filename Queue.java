@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Interfaccia per implementare una coda (Queue)
  * @param <T> Tipo generico dei dati inseriti all'interno della coda
 */

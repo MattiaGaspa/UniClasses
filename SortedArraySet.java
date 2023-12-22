@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Classe che implementa l'interfaccia Set. Ordinato e ridimensionabile
  * @param <T> Tipo generico dei dati inseriti all'interno dell'insieme
  */

@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Interfaccia Container che verrà utilizzata per estendere le interfacce dei dati astratti */
 public interface Container {
     /** Verifica se il Container è vuoto

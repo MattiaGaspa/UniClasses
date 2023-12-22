@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Classe che implementa l'interfaccia Dictionary. Non ordinato e ridimensionabile
  * @param <T> Tipo generico per la chiave delle coppie
  * @param <E> Tipo generico per il valore associato alle chiavi

@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Classe che implementa l'interfaccia Queue. Non ridimensionabile
  * @param <T> Tipo generico dei dati inseriti all'interno della coda
 */

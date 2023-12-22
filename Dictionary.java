@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Interfaccia per implementare un dizionario (Dictionary)
  * @param <T> Tipo generico per la chiave delle coppie
  * @param <E> Tipo generico per il valore associato alle chiavi

@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Interfaccia per implementare una pila (stack)
  * @param <T> Tipo generico dei dati inseriti all'interno dello stack
 */

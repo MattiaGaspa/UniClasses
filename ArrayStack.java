@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Classe che implementa l'interfaccia Stack. Ridimensionabile
  * @param <T> Tipo generico dei dati inseriti all'interno dello stack
  */

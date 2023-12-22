@@ -1,3 +1,5 @@
+package UniClasses;
+
 /** Interfaccia per implementare un insieme (Set)
  * @param <T> Tipo generico dei dati inseriti all'interno dell'insieme
  */
