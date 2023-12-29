@@ -68,9 +68,9 @@ public class UnsortedArraySet<T> implements Set<T> {
      * @param <T> Tipo generico dei dati inseriti all'interno delgli insieme
      * @return L'inisieme risultante
      */
-    public static <T> Set union(Set s1, Set s2) {
-        Set x = new UnsortedArraySet<T>();
-        T[] array1 = (T[]) s1.toArray();
+    public static <T> Set<T> union(Set<T> s1, Set<T> s2) {
+        Set<T> x = new UnsortedArraySet<T>();
+        T[] array1 = s1.toArray();
         for (int i = 0; i < array1.length; i++)
             x.add(array1[i]);
         array1 = (T[]) s2.toArray();
@@ -85,8 +85,8 @@ public class UnsortedArraySet<T> implements Set<T> {
      * @param <T> Tipo generico dei dati inseriti all'interno delgli insieme
      * @return L'inisieme risultante
      */
-    public static <T> Set intersection(Set s1, Set s2) {
-        Set x = new UnsortedArraySet<T>();
+    public static <T> Set<T> intersection(Set<T> s1, Set<T> s2) {
+        Set<T> x = new UnsortedArraySet<T>();
         T[] array1 = (T[]) s1.toArray();
         for (int i = 0; i < array1.length; i++)
             if (s2.contain(array1[i]))
@@ -99,8 +99,8 @@ public class UnsortedArraySet<T> implements Set<T> {
      * @param <T> Tipo generico dei dati inseriti all'interno delgli insieme
      * @return L'inisieme risultante
      */
-    public static <T> Set substract(Set s1, Set s2) {
-        Set x = new UnsortedArraySet<T>();
+    public static <T> Set<T> substract(Set<T> s1, Set<T> s2) {
+        Set<T> x = new UnsortedArraySet<T>();
         T[] array1 = (T[]) s1.toArray();
         for (int i = 0; i < array1.length; i++)
             if (!s2.contain(array1[i]))

@@ -32,8 +32,12 @@ public class SortedArraySet<T extends Comparable<T>> implements SortedSet<T>{
     public void add(T obj) {
         if (contain(obj)) return;
         if (vSize == array.length) array = resize(2*vSize);
-        array[vSize--] = obj;
-        array = toSortedArray();
+        int i;
+        for (i = vSize-1; (obj.compareTo(array[i])<0) && (i > 0); i--) {
+            array[i+1] = array[i];
+        }
+        array[i] = obj;
+        vSize++;
     }
     /** Ritorna la presenza di un elemento nell'insieme
      * @param obj L'oggetto d ricercare
@@ -42,21 +46,13 @@ public class SortedArraySet<T extends Comparable<T>> implements SortedSet<T>{
     public boolean contain(T obj) {
         return binSearch(obj, 0, vSize-1);
     }
-    /** Formatta l'insieme in un array ordinato
+    /** Formatta l'insieme in formato array
      * @return L'array formattato
      */
-    public T[] toSortedArray() {
-        for (int i = 1; i < vSize; i++) {
-            T temp = array[i];
-            int j;
-            for (j = i; j > 0 && temp.compareTo(array[j-1]) < 0; j--)
-                array[j] = array[j-1];
-            array[j] = temp;
-        }
-        return array;
-    }
     public T[] toArray() {
-        return toSortedArray();
+        T[] newArray = (T[]) new Object[vSize];
+        System.arraycopy(array, 0, newArray, 0, vSize);
+        return newArray;
     }
 
     private boolean binSearch(T value, int from, int to) {
@@ -72,6 +68,60 @@ public class SortedArraySet<T extends Comparable<T>> implements SortedSet<T>{
         if (newLength < vSize) newLength = vSize;
         System.arraycopy(array, 0, newArray, 0, newLength);
         return newArray;
+    }
+
+    /** Esegue l'operazione logica di unione su due insiemi
+     * @param s1 Primo operando
+     * @param s2 Secondo operando
+     * @param <T> Tipo generico dei dati inseriti all'interno delgli insieme
+     * @return L'inisieme risultante
+     */
+    public static <T extends Comparable<T>> SortedSet<T> union(SortedSet<T> s1, SortedSet<T> s2) {
+        SortedSet<T> x = new SortedArraySet<T>();
+        T[] v1 = s1.toArray();
+        T[] v2 = s2.toArray();
+        int i = 0, j = 0;
+        while ((i < v1.length) && (j < v2.length)) {
+            if (v1[i].compareTo(v2[i]) < 0)
+                x.add(v1[i++]);
+            else if (v1[i].compareTo(v2[i]) < 0)
+                x.add(v2[j++]);
+            else {
+                x.add(v1[i++]);
+                j++;
+            }
+        }
+        while (i < v1.length) x.add(v1[i++]);
+        while (j < v2.length) x.add(v2[j++]);
+        return x;
+    }
+    /** Esegue l'operazione logica di intersezione su due insiemi
+     * @param s1 Primo operando
+     * @param s2 Secondo operando
+     * @param <T> Tipo generico dei dati inseriti all'interno delgli insieme
+     * @return L'inisieme risultante
+     */
+    public static <T extends Comparable<T>> SortedSet<T> intersection(SortedSet<T> s1, SortedSet<T> s2) {
+        SortedSet<T> x = new SortedArraySet<T>();
+        T[] array1 = (T[]) s1.toArray();
+        for (int i = 0; i < array1.length; i++)
+            if (s2.contain(array1[i]))
+                x.add(array1[i]);
+        return x;
+    }
+    /**Esegue l'operazione logica di sottrazione su due insiemi
+     * @param s1 Primo operando
+     * @param s2 Secondo operando
+     * @param <T> Tipo generico dei dati inseriti all'interno delgli insieme
+     * @return L'inisieme risultante
+     */
+    public static <T extends Comparable<T>> SortedSet<T> substract(SortedSet<T> s1, SortedSet<T> s2) {
+        SortedSet<T> x = new SortedArraySet<T>();
+        T[] array1 = (T[]) s1.toArray();
+        for (int i = 0; i < array1.length; i++)
+            if (!s2.contain(array1[i]))
+                x.add(array1[i]);
+        return x;
     }
 
     /** Array che andrà a contenere l'insieme totalmente ordinato*/

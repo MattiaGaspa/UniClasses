@@ -8,8 +8,4 @@ public interface SortedSet<T extends Comparable<T>> extends Set<T> {
      * @param obj L'oggetto da inserire
      */
     void add(T obj);
-    /** Formatta l'insieme in un array ordinato
-     * @return L'array formattato
-     */
-    T[] toSortedArray();
 }
